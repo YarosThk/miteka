@@ -1,0 +1,236 @@
+body{
+  background-color: #f8edeb; /*#edf6f9 */
+  padding-top: 40px;
+  font-family: "Arial";
+}
+/* general layout ---------------------------------------------------- */
+.navbar{
+  background-color: #1d3557 !important;
+  height: 40px;
+}
+
+.navbar .navbar-brand{
+  color: #fca311;
+  background-color: #1d3557; /* former #fe4d57 */
+  width:90px;
+  font-size: 15px;
+
+}
+
+.navbar-brand img {
+  height: 30px;
+  /* put value of image height as your need */
+  float: left;
+  margin-right: 10px;
+}
+
+.navbar .nav-item{
+  color: #edf2f4 !important;
+  font-size: 15px;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+.navbar .nav-item:hover{
+  color: #ffffff!important;
+}
+
+.navbar-nav{
+  background-color: #1d3557 ; /* former #fe4d57*/
+}
+
+.searchBook{
+  color: white;
+  background-color: #e63946;
+  border-style: none;
+}
+
+li{
+  list-style:none;
+}
+
+/*End general style---------------------------------------------------------------------------*/
+
+/*Start Home Add Book---------------------------------------------------------------------------*/
+
+.cover_upload_label{
+  display:block;
+  position: relative;
+  width: 80px;
+  height: 78px;
+  background: url(https://cdn.iconscout.com/icon/premium/png-512-thumb/add-book-19-1110422.png) no-repeat center center;
+  background-size: cover;
+}
+.cover_upload{
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.add-book-card{
+  margin: 0 auto;
+  background: url("background_image.jpg");
+  background-color: #90e0ef;
+  text-align: center;
+  width: 40%;
+  min-width: 380px;
+}
+
+.newbook-input-area{
+  width: 100%;
+  border-width: 1px;
+  border-color: silver;
+  border-radius: 4px;
+  opacity: 85%;
+}
+
+.new-book-description{
+  resize: none;
+  overflow: auto;
+  border-width: 1px;
+  border-color: silver;
+  border-radius: 4px;
+  width: 100%;
+  height: 150px;
+  opacity: 87%;
+}
+
+.log-button-container{
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+}
+.btn{
+  color: white;
+  background-color: #e63946;
+  margin-bottom: 10px;
+}
+/*End Home Add Book---------------------------------------------------------------------------*/
+
+/*Library -----------------------------------------------------------------------------------*/
+.description{
+  width: 50%;
+}
+@media all and (max-width: 768px){
+  .breaker{
+    width: 100%;
+  }
+  .description{
+    width: 100%;
+  }
+}
+
+.library-card{
+  margin: 0 auto;
+  width: 99%;
+}
+.view-form{
+  display: inline-block;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+.view-btn{
+  background-color: #457b9d;
+}
+.view-btn:hover{
+  background-color: #a8dadc;
+}
+
+.deleteBook{
+  display: inline-block;
+}
+
+/*End Library -----------------------------------------------------------------------------------*/
+
+
+/* Start Book-details ------------------------------------------------------------------------- */
+.details-card{
+  width: 90%;
+  margin: 10px auto;
+}
+.cover_update_label{
+  /* I leave it just to remember, but I wont use it */
+}
+.cover_update{
+  /* I leave it just to remember, but I wont use it */
+}
+.text-area{
+  resize: none;
+  overflow: auto;
+  border-width: 1px;
+  border-color: silver;
+  border-radius: 4px;
+  width: 100%;
+  height: 100px;
+}
+.details-input-area{
+  border-width: 1px;
+  border-color: silver;
+  border-radius: 4px;
+}
+/* End Book-details --------------------------------------------------------------------------------------------- */
+
+
+/* Notes-Ides --------------------------------------------------------------------------------------------- */
+.add-note-card{
+  margin: 0 auto;
+}
+.ideas-input-area{
+  resize: none;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.ideas-text-area{
+  resize: none;
+  overflow: auto;
+  width: 100%;
+  height: 100px;
+  border:none;
+}
+
+.note-delete-btn{
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+}
+
+@media (min-width: 34em) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (min-width: 48em) {
+    .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media (min-width: 62em) {
+    .card-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+    }
+}
+
+@media (min-width: 75em) {
+    .card-columns {
+        -webkit-column-count: 5;
+        -moz-column-count: 5;
+        column-count: 5;
+    }
+}
+
+/* End Notes-Ides --------------------------------------------------------------------------------------------- */

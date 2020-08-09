@@ -1,0 +1,35 @@
+{% extends "layout.html"%}
+{% block content %}
+
+{% for book in library_content %}
+
+
+  <div class="card library-card border-0 mt-2" id = bookNumber{{book.id}} >
+       <div class="row align-items-start no-gutters">
+           <div class="col-auto img-col mx-auto">
+               <img src="{{ url_for('static', filename = 'book_covers/' + book.cover) }}">
+           </div>
+           <div class="w-1 breaker">
+             <!-- breaks the card in one columns, source: Bootstrap Grid System : Column Breakers -->
+           </div>
+           <div class="col mx-auto">
+               <div class="card-block px-1 mb-2">
+                 <h4 class="card-header">{{ book.title }}</h4>
+                 <p class="card-text">Author : {{ book.author }}</p>
+                 <p class="card-text">Pages : {{ book.pages_total }}</p>
+                 <p class="card-text">Pages read : {{ book.pages_read }}</p>
+                 <p class="card-text">Date added : {{ book.date_added[:10] }}</p>
+                 <p class="card-text description">{{ book.description }}</p>
+               </div>
+               <form class = view-form action="{{ url_for('main.edit_book', book_id = book.id) }}" method="GET">
+                 <input class = "btn btn-info view-btn" type="submit" name="update" value="View">
+               </form>
+               <button class = "btn btn-danger deleteBook" book_id="{{ book.id }}">Delete</button>
+           </div>
+
+
+       </div>
+ </div>
+{% endfor %}
+
+{% endblock %}

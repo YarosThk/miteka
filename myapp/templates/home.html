@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="alert alert-info alert-dismissible">
+    {% for message in messages %}
+      <li >{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<div class="add-book-card card my-1 border-0">
+  <form class="AddBook" action="" enctype="multipart/form-data" id ="SubmitBook" method="post">
+    {{ form.hidden_tag() }}
+    <fieldset>
+
+      <div class="card-header p-1">
+        <label for = "UploadLabel" class = "cover_upload_label">
+          {{ form.cover(class_="cover_upload") }}
+        </label>
+      </div>
+
+      <div class="form-group">
+        {% if form.title.errors %}
+          {{ form.title(class = "form-control form-control-sm is-invalid") }}
+          <div class="">
+            {% for error in form.title.errors %}
+              <span> {{ error }} </span>
+            {% endfor %}
+          </div>
+        {% else %}
+            {{ form.title(class = "newbook-input-area") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {% if form.author.errors %}
+          {{ form.author(class = "form-control form-control-sm is-invalid") }}
+          <div class="">
+            {% for error in form.author.errors %}
+              <span> {{ error }} </span>
+            {% endfor %}
+          </div>
+        {% else %}
+            {{ form.author(class = "newbook-input-area") }}
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {% if form.description.errors %}
+          {{ form.description(class = "form-control form-control-sm is-invalid") }}
+          <div class="">
+            {% for error in form.description.errors %}
+              <span> {{ error }} </span>
+            {% endfor %}
+          </div>
+        {% else %}
+            {{ form.description(class = "new-book-description") }}
+        {% endif %}
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          {% if form.pages_total.errors %}
+            {{ form.pages_total(class = "form-control form-control-sm is-invalid") }}
+            <div class="">
+              {% for error in form.pages_total.errors %}
+                <span> {{ error }} </span>
+              {% endfor %}
+            </div>
+          {% else %}
+              {{ form.pages_total(class = "newbook-input-area") }}
+          {% endif %}
+        </div>
+
+        <div class="form-group col-md-6">
+          {% if form.pages_read.errors %}
+            {{ form.pages_read(class = "form-control form-control-sm is-invalid") }}
+            <div class="">
+              {% for error in form.pages_read.errors %}
+                <span> {{ error }} </span>
+              {% endfor %}
+            </div>
+          {% else %}
+              {{ form.pages_read(class = "newbook-input-area") }}
+          {% endif %}
+        </div>
+      </div>
+
+      {{ form.submit(class_="btn btn-danger") }}
+    </fieldset>
+  </form>
+</div>
+
+{% endblock %}

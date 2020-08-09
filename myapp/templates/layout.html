@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename="app.js") }}"></script>
+    <link rel="stylesheet" type = "text/css" href='{{ url_for('static', filename = 'bootstrap.min.css') }}'>
+    <link rel="stylesheet" type = 'text/css' href = '{{ url_for('static', filename = 'custom.css') }}'>
+
+    {% if title %}
+      <title>{{title}}</title>
+    {% else %}
+      <title>Default</title>
+    {% endif %}
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href={{ url_for('main.home') }}><img src="{{ url_for('static', filename="navitem.png")}}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapsed" aria-controls="navbarCollapsed" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapsed">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-item nav-link" href="{{ url_for('main.book_view') }}">My Books</a>
+            </li>
+          </ul>
+          <form class="form-inline" action="{{ url_for('main.search_book') }}" method = "POST">
+            <input class="form-control h-25 mr-sm-2" name = "book_title" type="search" placeholder="Search books" aria-label="Search" required>
+            <button class="btn btn-danger btn-sm mt-2 " type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+
+    {% block content %} {% endblock %}
+
+  </body>
+</html>

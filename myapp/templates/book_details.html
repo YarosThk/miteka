@@ -1,0 +1,159 @@
+{% extends 'layout.html'%}
+{% block content %}
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="alert alert-info alert-dismissible" >
+    {% for message in messages %}
+      <li >{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+<div class="card details-card">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="true">Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="false">Add note</a>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active pt-1" id="nav-details" role="tabpanel" aria-labelledby="nav-home-tab">
+      <div class="card flex-row border-0" id =bookNumber{{book.id}} style="width: 80%;">
+          <div class="card-header p-1">
+              <img src="{{ url_for('static', filename = 'book_covers/' + book.cover) }}">
+          </div>
+          <div class="card-block px-1">
+            <form action="" enctype="multipart/form-data" id ="SubmitBook" method="POST">
+              {{ update_form.hidden_tag() }}
+              <fieldset class = "form-group">
+                <div class="form-group">
+                  {% if update_form.title.errors %}
+                    {{ update_form.title(class = "update_form-control update_form-control-sm is-invalid") }}
+                    <div class="">
+                      {% for error in update_form.title.errors %}
+                        <span> {{ error }} </span>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                      {{ update_form.title(class_= "details-input-area") }}
+                  {% endif %}
+                </div>
+
+                <div class="form-group">
+                  {% if update_form.author.errors %}
+                    {{ update_form.author(class = "update_form-control update_form-control-sm is-invalid") }}
+                    <div class="">
+                      {% for error in update_form.author.errors %}
+                        <span> {{ error }} </span>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                      {{ update_form.author(class_= "details-input-area") }}
+                  {% endif %}
+                </div>
+
+                <div class="form-group">
+                  {% if update_form.pages_total.errors %}
+                    {{ update_form.pages_total(class = "update_form-control update_form-control-sm is-invalid") }}
+                    <div class="">
+                      {% for error in update_form.pages_total.errors %}
+                        <span> {{ error }} </span>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                      {{ update_form.pages_total(class_= "details-input-area") }}
+                  {% endif %}
+                </div>
+
+                <div class="form-group">
+                  {% if update_form.pages_read.errors %}
+                    {{ update_form.pages_read(class = "update_form-control update_form-control-sm is-invalid") }}
+                    <div class="">
+                      {% for error in update_form.pages_read.errors %}
+                        <span> {{ error }} </span>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                      {{ update_form.pages_read(class_= "details-input-area") }}
+                  {% endif %}
+                </div>
+
+                <div class="form-group">
+                  {% if update_form.cover.errors %}
+                    {{ update_form.cover(class = "update_form-control update_form-control-sm is-invalid") }}
+                    <div class="">
+                      {% for error in update_form.cover.errors %}
+                        <span> {{ error }} </span>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    <label for="UpdateCoverLabel" class = "cover_update_label">
+                      {{ update_form.cover(class_= "cover_update")}}
+                    </label>
+                  {% endif %}
+                </div>
+
+                <div class="form-group">
+                  {% if update_form.description.errors %}
+                    {{ update_form.description(class = "update_form-control update_form-control-sm is-invalid") }}
+                    <div class="">
+                      {% for error in update_form.description.errors %}
+                        <span> {{ error }} </span>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                      {{ update_form.description(class_ = "text-area") }}
+                  {% endif %}
+                </div>
+
+                <div class="log-button-container">
+                  {{ update_form.update (class_="btn btn-danger") }}
+                </div>
+              </fieldset>
+            </form>
+          </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">
+      <div class="add-note-card card my-1" style="width: 40%;">
+        <form class="addnote" action="" method="POST">
+          {{ update_form.hidden_tag() }}
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item p-0">{{ notes_form.chapter(placeholder = "Chapter", class_= "ideas-input-area") }}</li>
+            <li class="list-group-item p-0">{{ notes_form.from_page(placeholder =  "From page", class_= "ideas-input-area") }}</li>
+            <li class="list-group-item p-0">{{ notes_form.to_page(placeholder = "To page", class_= "ideas-input-area") }}</li>
+            <li class="list-group-item p-0">{{ notes_form.ideas(placeholder = "Notes", class_ = "ideas-text-area" ) }}</li>
+            {{ notes_form.add_note(class_="btn btn-danger")}}
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="card-columns my-2 mx-2">
+  {% for note in book_notes %}
+    <div class="card note-card border-dark mr-1" id = "noteNumber{{ note.id }}">
+      <div class="card-header">{{ note.chapter_name }}</div>
+      <div class="card-body">
+        <p class="card-text">{{ note.ideas }}</p>
+        <p class="card-text"><small class="text-muted">Page {{ note.page_from }}<span> to {{ note.page_to}}</span></small></p>
+      </div>
+      <button class = "note-delete-btn btn-dark deleteNote" note_id = "{{ note.id }}">Delete</button>
+    </div>
+  {% endfor %}
+</div>
+
+
+
+{% endblock %}
