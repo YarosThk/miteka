@@ -1,5 +1,5 @@
 # miteka
-Personal book tracker. Add books to your reading list, and follow your reading progress with relevant notes for each chapter. 
+Personal book tracker. Add books to your reading list, and follow your reading progress with relevant notes for each chapter. Backend implemented with Python and Flask framework, along with SQL Lite for a small database to store books and notes on the book. Database is composed of two tables that have a one to many relationship in order for a Book to be able to have many notes attached. 
 
 ## Content
 
